@@ -1,0 +1,76 @@
+syntax = "v1"
+
+type (
+	InviteListReq {
+		Id    int64  `json:"id" validate:"required"` // 用户或机器人的唯一标识符,使用64位整数
+		Token string `json:"token" validate:"required"`
+	}
+	InviteListResp {
+		TotalCredit        int    `json:"total_credit"` // 只算邀请的积分
+		TotalInviteCount   int    `json:"total_invite_count"`
+		SuccessInviteCount int    `json:"success_invite_count"`
+		SelfCode           string `json:"self_code"`
+		ParentCode         string `json:"parent_code"`
+	}
+	InviteVerifyReq {
+		Id         int64  `json:"id" validate:"required"` // 用户或机器人的唯一标识符,使用64位整数
+		InviteCode string `json:"invite_code" validate:"required"`
+		Token      string `json:"token" validate:"required"`
+	}
+	InviteVerifyResp {
+		InviteCredit    int  `json:"invite_credit"`
+		IsInviteSuccess bool `json:"is_invite_success"`
+	}
+	InviteHistoryReq {
+		Id    int64  `json:"id" validate:"required"` // 用户或机器人的唯一标识符,使用64位整数
+		Token string `json:"token" validate:"required"`
+	}
+	InviteHistory {
+		InviteCredit  int    `json:"invite_credit"`
+		ChildId       int64  `json:"child_id"`
+		ChildUserName string `json:"child_user_name"`
+		Avatar        string `json:"avatar"`
+		CreateTime    int64  `json:"create_time"`
+	}
+	InviteHistoryResp {
+		TotalInviteCount   int             `json:"total_invite_count"`
+		SuccessInviteCount int             `json:"success_invite_count"`
+		InviteHistorys     []InviteHistory `json:"invite_historys"`
+	}
+)
+
+@server (
+	jwt:    Auth
+	group:  invite
+	prefix: /api
+)
+service backend-api {
+	@handler InviteList
+	post /invite_list (InviteListReq) returns (InviteListResp)
+
+	@handler InviteVerify
+	post /invite_verify (InviteVerifyReq) returns (InviteVerifyResp)
+
+	@handler InviteHistory
+	post /invite_history (InviteHistoryReq) returns (InviteHistoryResp)
+}
+
+/******************** Deprecated  ******************/
+type InviteCreateReq {
+	Count    int    `json:"count"`
+	Password string `json:"password"`
+}
+
+type InviteCreateResp {
+	InviteCodes interface{} `json:"invite_codes"`
+}
+
+@server (
+	group:  sys
+	prefix: /api
+)
+service backend-api {
+	@handler InviteCreate
+	post /invite_create (InviteCreateReq) returns (InviteCreateResp)
+}
+

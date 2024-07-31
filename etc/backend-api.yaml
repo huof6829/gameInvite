@@ -1,0 +1,30 @@
+
+Name: backend-api
+Host: 0.0.0.0    # 后端ip
+Port: 8888       # 后端端口
+Timeout: 100000  # 超时
+
+Log:
+  Level: debug   
+  KeepDays: 30
+
+Auth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+
+Mysql:
+  # 数据库配置： 用户名:密码@(ip:端口)/库名？超时设置
+  DataSource: admin:YHt6_8YeHiG_C?ixZP@tcp(127.0.0.1:3306)/savvy_gameing?timeout=1s&readTimeout=1s&writeTimeout=1s&charset=utf8mb4&parseTime=true&loc=Local
+  MaxIdleConns: 10
+  MaxOpenConns: 100
+  ConnMaxLifetime: 3600
+
+BizRedis:
+  Host: 127.0.0.1:6379   # ip:port
+  Pass: ''               # redis.conf 设置密码
+  Type: node             # 默认
+
+CacheRedis:
+  - Host: 127.0.0.1:6379  # ip:port
+    Pass: ''              # redis.conf 设置密码
+    Type: node            # 默认
+
