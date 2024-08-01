@@ -19,7 +19,7 @@ stop:
 	pkill -f backend
 
 show:
-	ss -an|grep -e backend
+	netstat -tunlp|grep -e backend
 
 log:
 	tail -f run.log

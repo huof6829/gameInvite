@@ -88,7 +88,7 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 	userInviteCountChild, err := l.svcCtx.UserInviteCountModel.FindOneByUserId(l.ctx, userId)
 	if err == gorm.ErrRecordNotFound {
 		l.Logger.Errorf("UserInviteCountModel.FindByUserIds  userBind.Id=%v, err=ErrNotFound", userId)
-		return resp, nil
+		userInviteCountChild = &user_invite_count.UserInviteCount{}
 	} else if err != nil {
 		return nil, err
 	}
@@ -97,7 +97,8 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 		//  系统发放
 		inviteRecord, err := l.svcCtx.UserInviteModel.FindOneByParentIdChildId(l.ctx, global.Sys_Id, userId)
 		if err == gorm.ErrRecordNotFound {
-			l.Logger.Errorf("SysInviteModel child_id=%v, err=ErrNotFound", userId)
+			l.Logger.Errorf("UserInviteModel.FindOneByParentIdChildId child_id=%v, err=ErrNotFound", userId)
+			inviteRecord = &user_invite.UserInvite{}
 		} else if err != nil {
 			return nil, err
 		}
@@ -111,6 +112,7 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 		userInviteCountParent, err = l.svcCtx.UserInviteCountModel.FindOneByUserId(l.ctx, userInvite.ParentId)
 		if err == gorm.ErrRecordNotFound {
 			l.Logger.Errorf("UserInviteCountModel.FindByUserIds parent_id=%v, err=ErrNotFound", userInvite.ParentId)
+			userInviteCountParent = &user_invite_count.UserInviteCount{}
 		} else if err != nil {
 			return nil, err
 		}

@@ -289,7 +289,7 @@ func IndirectInviteCreditSum(ctx context.Context, svcCtx *svc.ServiceContext, ch
 			}
 		}
 
-		return err
+		return nil
 	}); err != nil {
 		logc.Errorf(ctx, "[IndirectInviteCreditSum] Transaction err=%v", err)
 		return err
