@@ -29,7 +29,6 @@ const (
 
 const (
 	// 系统
-	Sys_Id        = -1
-	Sys_Password  = "__bal&!092ance"
-	Test_Password = "__bal&!829ance829"
+	Sys_Id       = -1
+	Sys_Password = "__sq2val&!093inv"
 )

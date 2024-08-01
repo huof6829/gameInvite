@@ -13,6 +13,7 @@ runf:
 	go run backend.go -f=etc/backend-api.yaml
 
 rund: 
+	go build backend.go 
 	nohup /home/mart/gameInvite/backend -f=/home/mart/gameInvite/etc/backend-api.yaml > /home/mart/gameInvite/run.log 2>&1 &
 
 stop: 
