@@ -2,11 +2,13 @@ package invite
 
 import (
 	"context"
+	"time"
+
+	"gorm.io/gorm"
 
 	"github.com/Savvy-Gameing/backend/common/global"
 	"github.com/Savvy-Gameing/backend/internal/svc"
 	"github.com/Savvy-Gameing/backend/internal/types"
-	"gorm.io/gorm"
 
 	xerrors "github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -57,9 +59,6 @@ func (l *InviteHistoryLogic) InviteHistory(req *types.InviteHistoryReq) (resp *t
 		return nil, err
 	}
 
-	resp.TotalInviteCount = len(userInvites)
-	resp.SuccessInviteCount = resp.TotalInviteCount // modifyfuture
-
 	for _, userInvite := range userInvites {
 		// modify
 		var childId int64
@@ -73,13 +72,23 @@ func (l *InviteHistoryLogic) InviteHistory(req *types.InviteHistoryReq) (resp *t
 		// }
 
 		resp.InviteHistorys = append(resp.InviteHistorys, types.InviteHistory{
-			InviteCredit:  int(userInvite.InviteCreditDirectChild),
-			CreateTime:    userInvite.CreatedAt.Unix(),
+			CreateTime:    userInvite.CreatedAt.Format(global.TimeFormat),
 			ChildUserName: childUserName,
 			ChildId:       childId,
 			Avatar:        avatar,
 		})
 	}
+
+	// test
+	resp.InviteHistorys = append(resp.InviteHistorys, types.InviteHistory{
+		CreateTime:    time.Now().Format(global.TimeFormat),
+		ChildUserName: "telegame_username",
+		ChildId:       156000,
+		Avatar:        "https://bucket-pubwv4.s3.ap-southeast-1.amazonaws.com/profile-icons/a31.png",
+	})
+
+	resp.TotalInviteCount = len(resp.InviteHistorys)
+	resp.SuccessInviteCount = resp.TotalInviteCount // modifyfuture
 
 	return resp, nil
 }

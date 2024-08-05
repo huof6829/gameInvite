@@ -3,7 +3,6 @@ package invite
 import (
 	"context"
 
-	"github.com/Savvy-Gameing/backend/common/global"
 	"github.com/Savvy-Gameing/backend/common/logicx"
 	"github.com/Savvy-Gameing/backend/internal/svc"
 	"github.com/Savvy-Gameing/backend/internal/types"
@@ -52,7 +51,6 @@ func (l *InviteVerifyLogic) InviteVerify(req *types.InviteVerifyReq) (resp *type
 	}
 
 	resp = &types.InviteVerifyResp{
-		InviteCredit:    global.Invite_Credit_Direct_1,
 		IsInviteSuccess: true,
 	}
 	return resp, nil

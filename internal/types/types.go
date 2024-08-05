@@ -11,11 +11,10 @@ type InviteCreateResp struct {
 }
 
 type InviteHistory struct {
-	InviteCredit  int    `json:"invite_credit"`
 	ChildId       int64  `json:"child_id"`
 	ChildUserName string `json:"child_user_name"`
 	Avatar        string `json:"avatar"`
-	CreateTime    int64  `json:"create_time"`
+	CreateTime    string `json:"create_time"`
 }
 
 type InviteHistoryReq struct {
@@ -35,7 +34,6 @@ type InviteListReq struct {
 }
 
 type InviteListResp struct {
-	TotalCredit        int    `json:"total_credit"` // 只算邀请的积分
 	TotalInviteCount   int    `json:"total_invite_count"`
 	SuccessInviteCount int    `json:"success_invite_count"`
 	SelfCode           string `json:"self_code"`
@@ -49,6 +47,5 @@ type InviteVerifyReq struct {
 }
 
 type InviteVerifyResp struct {
-	InviteCredit    int  `json:"invite_credit"`
 	IsInviteSuccess bool `json:"is_invite_success"`
 }

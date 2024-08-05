@@ -9,7 +9,6 @@ import (
 	"github.com/Savvy-Gameing/backend/common/global"
 	"github.com/Savvy-Gameing/backend/common/response"
 	"github.com/Savvy-Gameing/backend/common/utils"
-	"github.com/Savvy-Gameing/backend/internal/model/sys_invite"
 	"github.com/Savvy-Gameing/backend/internal/model/user_invite"
 	"github.com/Savvy-Gameing/backend/internal/model/user_invite_count"
 	"github.com/Savvy-Gameing/backend/internal/svc"
@@ -105,12 +104,6 @@ func VerifyInviteCode(ctx context.Context, svcCtx *svc.ServiceContext, childId i
 			})
 
 		if err = svcCtx.DB.Transaction(func(tx *gorm.DB) error {
-			if err = svcCtx.SysInviteModel.InsertOnUpdate(ctx, tx, &sys_invite.SysInvite{
-				InviteCode: inviteCodeParent,
-			}); err != nil {
-				return err
-			}
-
 			if err = svcCtx.UserInviteModel.InsertOnUpdate(ctx, tx, &user_invite.UserInvite{
 				ParentId:                 parentId,
 				ChildId:                  childId,

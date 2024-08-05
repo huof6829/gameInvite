@@ -1,11 +1,8 @@
 package sys_invite
 
 import (
-	"context"
-
 	"github.com/zeromicro/go-zero/core/stores/cache"
 	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
 )
 
 var _ SysInviteModel = (*customSysInviteModel)(nil)
@@ -23,7 +20,6 @@ type (
 	}
 
 	customSysInviteLogicModel interface {
-		InsertOnUpdate(ctx context.Context, tx *gorm.DB, data *SysInvite) error
 	}
 )
 
@@ -45,18 +41,4 @@ func (m *defaultSysInviteModel) customCacheKeys(data *SysInvite) []string {
 		return []string{}
 	}
 	return []string{}
-}
-
-func (m *customSysInviteModel) InsertOnUpdate(ctx context.Context, tx *gorm.DB, data *SysInvite) error {
-	err := m.ExecCtx(ctx, func(conn *gorm.DB) error {
-		db := conn
-		if tx != nil {
-			db = tx
-		}
-		return db.Clauses(clause.OnConflict{
-			Columns:   []clause.Column{{Name: "id"}},
-			DoUpdates: clause.AssignmentColumns([]string{"child_id", "invite_code", "invite_credit_direct_child"}),
-		}).Create(data).Error
-	}, m.getCacheKeys(data)...)
-	return err
 }

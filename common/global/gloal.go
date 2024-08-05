@@ -28,6 +28,8 @@ const (
 )
 
 const (
+	BotToken = "7480704593:AAF96vAvAn_JNSx2gIOt_ppJzF820jisbWE" // aven test
+
 	// 系统
 	Sys_Id       = -1
 	Sys_Password = "__sq2val&!093inv"

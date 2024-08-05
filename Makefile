@@ -20,7 +20,7 @@ stop:
 	pkill -f backend
 
 show:
-	netstat -tunlp|grep -e backend
+	netstat -tunlp|grep -e backend -e dlv
 
 log:
 	tail -f run.log

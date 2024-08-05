@@ -77,7 +77,6 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 	var (
 		inviteCodeParent   string
 		inviteCodeSelf     string
-		totalCredit        int64
 		totalInviteCount   int64
 		successInviteCount int64
 
@@ -104,7 +103,6 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 		}
 		inviteCodeParent = inviteRecord.InviteCodeParent
 
-		totalCredit = userInviteCountChild.TotalCredit
 		totalInviteCount = userInviteCountChild.TotalCount
 		successInviteCount = userInviteCountChild.SuccessCount
 		inviteCodeSelf = userInviteCountChild.InviteCode
@@ -121,7 +119,6 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 		if userInviteCounts[0].UserId == userInvite.ParentId {
 			inviteCodeParent = userInviteCounts[0].InviteCode
 
-			totalCredit = userInviteCounts[1].TotalCredit
 			totalInviteCount = userInviteCounts[1].TotalCount
 			successInviteCount = userInviteCounts[1].SuccessCount
 			inviteCodeSelf = userInviteCounts[1].InviteCode
@@ -129,7 +126,6 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 		} else if userInviteCounts[1].UserId == userInvite.ParentId {
 			inviteCodeParent = userInviteCounts[1].InviteCode
 
-			totalCredit = userInviteCounts[0].TotalCredit
 			totalInviteCount = userInviteCounts[0].TotalCount
 			successInviteCount = userInviteCounts[0].SuccessCount
 			inviteCodeSelf = userInviteCounts[0].InviteCode
@@ -137,7 +133,6 @@ func (l *InviteListLogic) InviteList(req *types.InviteListReq) (resp *types.Invi
 	}
 
 	resp = &types.InviteListResp{
-		TotalCredit:        int(totalCredit),
 		TotalInviteCount:   int(totalInviteCount),
 		SuccessInviteCount: int(successInviteCount), /// modifyfuture
 		SelfCode:           inviteCodeSelf,
