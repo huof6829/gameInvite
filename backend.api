@@ -69,5 +69,8 @@ type InviteCreateResp {
 service backend-api {
 	@handler InviteCreate
 	post /invite_create (InviteCreateReq) returns (InviteCreateResp)
+
+	@handler Telegram
+	get /telegram
 }
 

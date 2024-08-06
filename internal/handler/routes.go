@@ -41,6 +41,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/invite_create",
 				Handler: sys.InviteCreateHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/telegram",
+				Handler: sys.TelegramHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api"),
 	)
