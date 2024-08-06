@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/Savvy-Gameing/backend/common/global"
+	"github.com/Savvy-Gameing/backend/common/logicx"
 	"github.com/Savvy-Gameing/backend/internal/svc"
 	"github.com/Savvy-Gameing/backend/internal/types"
 
@@ -47,6 +48,11 @@ func (l *InviteHistoryLogic) InviteHistory(req *types.InviteHistoryReq) (resp *t
 	// } else if err != nil {
 	// 	return nil, err
 	// }
+
+	err = logicx.TgBotStart(l.ctx, l.svcCtx)
+	if err != nil {
+		return
+	}
 
 	resp = &types.InviteHistoryResp{
 		InviteHistorys: []types.InviteHistory{},

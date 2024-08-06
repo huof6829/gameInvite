@@ -226,7 +226,7 @@ func TestConfig(t *testing.T) (ctx context.Context, svcCtx *svc.ServiceContext) 
 		},
 	}
 	db := orm.MustNewMysql(&orm.Config{
-		DSN:          "root:root123456@tcp(127.0.0.1:3306)/savvy_gameing?timeout=1s&readTimeout=1s&writeTimeout=1s&charset=utf8mb4&parseTime=true&loc=Local",
+		DSN:          "admin:YHt6_8YeHiG_C?ixZP@tcp(127.0.0.1:3306)/savvy_gameing?timeout=1s&readTimeout=1s&writeTimeout=1s&charset=utf8mb4&parseTime=true&loc=Local",
 		MaxIdleConns: 10,
 		MaxOpenConns: 100,
 		MaxLifetime:  3600,

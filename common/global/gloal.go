@@ -28,7 +28,10 @@ const (
 )
 
 const (
-	BotToken = "7480704593:AAF96vAvAn_JNSx2gIOt_ppJzF820jisbWE" // aven test
+	// TgBotToken = "7480704593:AAF96vAvAn_JNSx2gIOt_ppJzF820jisbWE" // aven test
+	TG_BOT_TOKEN = "7033339300:AAEEt_MJUxuU9yMFeoTz6R7GwA27TfmfQWE" // test eden
+	TG_BOT_ID    = "7033339300"
+	TG_BOT_NAME  = "eden_savvy_game_bot"
 
 	// 系统
 	Sys_Id       = -1

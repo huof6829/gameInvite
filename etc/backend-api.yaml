@@ -1,7 +1,7 @@
 
 Name: backend-api
 Host: 0.0.0.0    # 后端ip
-Port: 8888       # 后端端口
+Port: 8880       # 后端端口
 Timeout: 100000  # 超时
 
 Log:
@@ -27,4 +27,6 @@ CacheRedis:
   - Host: 127.0.0.1:6379  # ip:port
     Pass: ''              # redis.conf 设置密码
     Type: node            # 默认
+
+TgWebHook: https://ec2-52-77-241-219.ap-southeast-1.compute.amazonaws.com:8443
 

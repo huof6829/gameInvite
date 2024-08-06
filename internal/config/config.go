@@ -24,4 +24,5 @@ type Config struct {
 	}
 	CacheRedis cache.CacheConf
 	BizRedis   redis.RedisConf
+	TgWebHook  string
 }
