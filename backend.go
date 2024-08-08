@@ -24,13 +24,13 @@ func main() {
 	conf.MustLoad(*configFile, &c)
 	fmt.Printf("c: %+v\n", c)
 
-	// c.Host = "0.0.0.0"
-	// c.Port = 8443
-	// c.CertFile = "/etc/YOURPUBLIC.pem"
-	// c.KeyFile = "/etc/YOURPRIVATE.key"
-	// c.TgWebHook = "https://game-invite.vercel.app:8443"
-	// c.TgPublicPem = "/etc/YOURPUBLIC.pem"
-	// c.TgPrivateKey = "/etc/YOURPRIVATE.key"
+	c.Host = "0.0.0.0"
+	c.Port = 8443
+	c.CertFile = "/etc/YOURPUBLIC.pem"
+	c.KeyFile = "/etc/YOURPRIVATE.key"
+	c.TgWebHook = "https://game-invite.vercel.app:8443"
+	c.TgPublicPem = "/etc/YOURPUBLIC.pem"
+	c.TgPrivateKey = "/etc/YOURPRIVATE.key"
 
 	server := rest.MustNewServer(c.RestConf, rest.WithCors("*")) // note: modify in Nginx
 	defer server.Stop()
