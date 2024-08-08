@@ -8,7 +8,6 @@ import (
 	"github.com/Savvy-Gameing/backend/internal/handler"
 	"github.com/Savvy-Gameing/backend/internal/svc"
 
-	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
 	"github.com/zeromicro/go-zero/rest"
 )
@@ -16,10 +15,10 @@ import (
 var configFile = flag.String("f", "etc/backend-api.yaml", "the config file")
 
 func main() {
-	flag.Parse()
+	// flag.Parse()
 
 	var c config.Config
-	conf.MustLoad(*configFile, &c)
+	// conf.MustLoad(*configFile, &c)
 	fmt.Printf("c: %+v\n", c)
 
 	c.Host = "0.0.0.0"
@@ -29,6 +28,7 @@ func main() {
 	c.TgWebHook = "https://game-invite.vercel.app:8443"
 	c.TgPublicPem = "etc/YOURPUBLIC.pem"
 	c.TgPrivateKey = "etc/YOURPRIVATE.key"
+	c.Auth.AccessSecret = "bq0536f9-6P50-5T06-8e13-pvOjleU0PCIN"
 
 	server := rest.MustNewServer(c.RestConf, rest.WithCors("*")) // note: modify in Nginx
 	defer server.Stop()

@@ -28,31 +28,31 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	db := orm.MustNewMysql(&orm.Config{
-		DSN:          c.Mysql.DataSource,
-		MaxOpenConns: c.Mysql.MaxOpenConns,
-		MaxIdleConns: c.Mysql.MaxIdleConns,
-		MaxLifetime:  c.Mysql.MaxLifetime,
-	})
+	// db := orm.MustNewMysql(&orm.Config{
+	// 	DSN:          c.Mysql.DataSource,
+	// 	MaxOpenConns: c.Mysql.MaxOpenConns,
+	// 	MaxIdleConns: c.Mysql.MaxIdleConns,
+	// 	MaxLifetime:  c.Mysql.MaxLifetime,
+	// })
 
-	rds := redis.MustNewRedis(redis.RedisConf{
-		Host: c.BizRedis.Host,
-		Pass: c.BizRedis.Pass,
-		Type: c.BizRedis.Type,
-	})
+	// rds := redis.MustNewRedis(redis.RedisConf{
+	// 	Host: c.BizRedis.Host,
+	// 	Pass: c.BizRedis.Pass,
+	// 	Type: c.BizRedis.Type,
+	// })
 
-	initTable(db)
+	// initTable(db)
 
 	return &ServiceContext{
-		Config:   c,
-		DB:       db,
-		BizRedis: rds,
+		Config: c,
+		// DB:       db,
+		// BizRedis: rds,
 		// Consumer: dq.NewConsumer(c.DqConf),
 		Cron: cron.New(cron.WithSeconds()),
 
-		UserInviteModel:      user_invite.NewUserInviteModel(db.DB, c.CacheRedis),
-		UserInviteCountModel: user_invite_count.NewUserInviteCountModel(db.DB, c.CacheRedis),
-		SysInviteModel:       sys_invite.NewSysInviteModel(db.DB, c.CacheRedis),
+		// UserInviteModel:      user_invite.NewUserInviteModel(db.DB, c.CacheRedis),
+		// UserInviteCountModel: user_invite_count.NewUserInviteCountModel(db.DB, c.CacheRedis),
+		// SysInviteModel:       sys_invite.NewSysInviteModel(db.DB, c.CacheRedis),
 	}
 }
 
