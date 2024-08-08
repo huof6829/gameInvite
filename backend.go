@@ -18,6 +18,8 @@ var configFile = flag.String("f", "etc/backend-api.yaml", "the config file")
 func main() {
 	flag.Parse()
 
+	*configFile = "etc/backend-api.yaml"
+
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	fmt.Printf("c: %+v\n", c)
