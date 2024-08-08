@@ -6,7 +6,7 @@ import (
 
 type SysInvite struct {
 	Id         int64     `gorm:"column:id;type:bigint(20);autoIncrement;not null;primaryKey"` // auto id
-	InviteCode string    `gorm:"column:invite_code;type:varchar(20);not null;unique"`
+	InviteCode string    `gorm:"column:invite_code;type:varchar(200);not null;unique"`
 	CreatedAt  time.Time `gorm:"column:created_at;type:timestamp;not null"`
 	UpdatedAt  time.Time `gorm:"column:updated_at;type:timestamp;not null"`
 }

@@ -8,9 +8,12 @@ import (
 
 func TestTgBotStart(t *testing.T) {
 	require := require.New(t)
-
 	ctx, svcCtx := TestConfig(t)
-	svcCtx.Config.TgWebHook = "https://ec2-52-77-241-219.ap-southeast-1.compute.amazonaws.com:8443"
+
+	// vercel 运行才有效
+	svcCtx.Config.TgWebHook = "https://game-invite.vercel.app:8443"
+	svcCtx.Config.TgPublicPem = "/home/mart/selfca/YOURPUBLIC.pem"
+	svcCtx.Config.TgPrivateKey = "/home/mart/selfca/YOURPRIVATE.key"
 	err := TgBotStart(ctx, svcCtx)
 	require.NoError(err)
 

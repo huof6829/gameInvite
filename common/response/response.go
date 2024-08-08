@@ -37,8 +37,8 @@ func HttpResult(r *http.Request, w http.ResponseWriter, resp interface{}, err er
 				return
 			} else {
 				httpx.WriteJsonCtx(r.Context(), w, http.StatusBadRequest, Response{
-					Code:    DBErr.GetErrCode(),
-					Message: DBErr.GetErrMsg(),
+					Code:    int(e.Number),
+					Message: e.Error(),
 					Data:    nil,
 				})
 				return

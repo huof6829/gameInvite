@@ -22,7 +22,9 @@ type Config struct {
 		MaxIdleConns int `json:",default=100"`
 		MaxLifetime  int `json:",default=3600"`
 	}
-	CacheRedis cache.CacheConf
-	BizRedis   redis.RedisConf
-	TgWebHook  string
+	CacheRedis   cache.CacheConf
+	BizRedis     redis.RedisConf
+	TgWebHook    string
+	TgPublicPem  string
+	TgPrivateKey string
 }

@@ -62,6 +62,10 @@ type InviteCreateResp {
 	InviteCodes interface{} `json:"invite_codes"`
 }
 
+type TestResp {
+	Data string `json:"data"`
+}
+
 @server (
 	group:  sys
 	prefix: /api
@@ -70,7 +74,10 @@ service backend-api {
 	@handler InviteCreate
 	post /invite_create (InviteCreateReq) returns (InviteCreateResp)
 
-	@handler Telegram
-	get /telegram
+	@handler Webhook
+	post /webhook
+
+	@handler Test
+	get /test returns (TestResp)
 }
 

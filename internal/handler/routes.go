@@ -43,8 +43,13 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/telegram",
-				Handler: sys.TelegramHandler(serverCtx),
+				Path:    "/test",
+				Handler: sys.TestHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/webhook",
+				Handler: sys.WebhookHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api"),

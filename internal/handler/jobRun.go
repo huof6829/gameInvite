@@ -7,6 +7,7 @@ import (
 
 	// job "github.com/Savvy-Gameing/backend/internal/logic/job"
 	cron "github.com/Savvy-Gameing/backend/internal/logic/cron"
+	"github.com/Savvy-Gameing/backend/internal/logic/tgbot"
 	"github.com/Savvy-Gameing/backend/internal/svc"
 )
 
@@ -23,4 +24,5 @@ func RegisterJob(serverCtx *svc.ServiceContext, group *service.ServiceGroup) {
 	// group.Add(job.NewJobConsumeLogic(context.Background(), serverCtx))
 
 	group.Add(cron.NewCronLogic(context.Background(), serverCtx))
+	group.Add(tgbot.NewTgbotLogic(context.Background(), serverCtx))
 }

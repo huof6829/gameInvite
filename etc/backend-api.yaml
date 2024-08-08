@@ -1,7 +1,7 @@
 
 Name: backend-api
 Host: 0.0.0.0    # 后端ip
-Port: 8880       # 后端端口
+Port: 8443       # 后端port，绑定tg webhook，不能变
 Timeout: 100000  # 超时
 
 Log:
@@ -9,7 +9,7 @@ Log:
   KeepDays: 30
 
 Auth:
-  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505da0
+  AccessSecret: bq0536f9-6P50-5T06-8e13-pvOjleU0PCIN
 
 Mysql:
   # 数据库配置： 用户名:密码@(ip:端口)/库名？超时设置
@@ -28,5 +28,6 @@ CacheRedis:
     Pass: ''              # redis.conf 设置密码
     Type: node            # 默认
 
-TgWebHook: https://ec2-52-77-241-219.ap-southeast-1.compute.amazonaws.com:8443
-
+TgWebHook: https://game-invite.vercel.app:8443
+TgPublicPem: etc/YOURPUBLIC.pem
+TgPrivateKey: etc/YOURPRIVATE.key

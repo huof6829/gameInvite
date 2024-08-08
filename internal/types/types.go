@@ -49,3 +49,7 @@ type InviteVerifyReq struct {
 type InviteVerifyResp struct {
 	IsInviteSuccess bool `json:"is_invite_success"`
 }
+
+type TestResp struct {
+	Data string `json:"data"`
+}

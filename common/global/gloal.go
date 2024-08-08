@@ -29,9 +29,15 @@ const (
 
 const (
 	// TgBotToken = "7480704593:AAF96vAvAn_JNSx2gIOt_ppJzF820jisbWE" // aven test
-	TG_BOT_TOKEN = "7033339300:AAEEt_MJUxuU9yMFeoTz6R7GwA27TfmfQWE" // test eden
-	TG_BOT_ID    = "7033339300"
-	TG_BOT_NAME  = "eden_savvy_game_bot"
+	// test eden
+	// TG_BOT_TOKEN = "7033339300:AAEEt_MJUxuU9yMFeoTz6R7GwA27TfmfQWE"
+	// TG_BOT_ID    = "7033339300"
+	// TG_BOT_NAME  = "eden_savvy_game_bot"
+
+	// test Jim
+	TG_BOT_TOKEN = "7389490884:AAF-kUtoUk8MMFHwyiGHGcbqUfXjWZ7qy8U"
+	TG_BOT_NAME  = "mart_jim_bot"
+	TG_BOT_ID    = "7389490884"
 
 	// 系统
 	Sys_Id       = -1

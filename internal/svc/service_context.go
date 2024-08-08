@@ -1,6 +1,7 @@
 package svc
 
 import (
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/robfig/cron/v3"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/redis"
@@ -18,7 +19,8 @@ type ServiceContext struct {
 	BizRedis *redis.Redis
 	DB       *orm.DB
 	// Consumer dq.Consumer
-	Cron *cron.Cron
+	Cron  *cron.Cron
+	TgBot *tgbotapi.BotAPI
 
 	UserInviteModel      user_invite.UserInviteModel
 	UserInviteCountModel user_invite_count.UserInviteCountModel
